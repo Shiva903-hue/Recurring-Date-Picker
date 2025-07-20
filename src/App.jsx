@@ -1,12 +1,10 @@
 import React, { useState } from 'react';
-// import RecurringDatePicker from '../components/RecurringDatePicker/index';
 import RecurringDatePicker from './components/RecurringDatePicker/index';
 import { formatDate } from "./components/RecurringDatePicker/recurrenceUtils";
 
 export default function App() {
   const [isPickerOpen, setIsPickerOpen] = useState(true);
   const [savedRecurrence, setSavedRecurrence] = useState(null);
-
   const handleSave = (data) => {
     setSavedRecurrence(data);
     setIsPickerOpen(false);
