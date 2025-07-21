@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import RecurringDatePicker from './components/RecurringDatePicker/index';
+import RecurringDatePicker from './components/RecurringDatePicker/Index';
 import { formatDate } from "./components/RecurringDatePicker/recurrenceUtils";
 
 export default function App() {
