@@ -1,6 +1,6 @@
-import React, { useState } from 'react';
-import RecurringDatePicker from './components/RecurringDatePicker/Index';
-import { formatDate } from "./components/RecurringDatePicker/recurrenceUtils";
+import React, { useState } from "react";
+import RecurringDatePicker from "./components/RecurringDatePicker/Index";
+import { formatDate } from "./components/RecurringDatePicker/RecurrenceUtils";
 
 export default function App() {
   const [isPickerOpen, setIsPickerOpen] = useState(true);
@@ -8,7 +8,7 @@ export default function App() {
   const handleSave = (data) => {
     setSavedRecurrence(data);
     setIsPickerOpen(false);
-    console.log('Saved Recurrence:', data);
+    console.log("Saved Recurrence:", data);
   };
 
   const handleCancel = () => {
@@ -22,7 +22,9 @@ export default function App() {
           <h2 className="text-xl font-bold mb-4">Recurring Date Picker Demo</h2>
           {savedRecurrence ? (
             <div className="bg-green-50 border border-green-200 p-4 rounded space-y-2">
-              <p className="text-green-700 font-semibold">{savedRecurrence.description}</p>
+              <p className="text-green-700 font-semibold">
+                {savedRecurrence.description}
+              </p>
               <p className="text-green-600 text-sm">
                 Start: {formatDate(savedRecurrence.startDate)}
                 {savedRecurrence.hasEndDate && savedRecurrence.endDate && (
@@ -30,11 +32,17 @@ export default function App() {
                 )}
               </p>
               <p className="text-green-600 text-sm">
-                Next occurrences: {savedRecurrence.dates.slice(0, 3).map(d => d.toLocaleDateString()).join(', ')}
+                Next occurrences:{" "}
+                {savedRecurrence.dates
+                  .slice(0, 3)
+                  .map((d) => d.toLocaleDateString())
+                  .join(", ")}
               </p>
             </div>
           ) : (
-            <p className="text-gray-600 mb-4">No recurrence pattern saved yet.</p>
+            <p className="text-gray-600 mb-4">
+              No recurrence pattern saved yet.
+            </p>
           )}
 
           <button

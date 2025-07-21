@@ -1,20 +1,24 @@
 // MiniCalendar.jsx
-import React, { useState, useMemo } from 'react';
-import { useRecurrence } from './RecurrenceContext';
-import { ChevronLeft, ChevronRight } from 'lucide-react';
-import { isSameDay } from './recurrenceUtils';
+import React, { useState, useMemo } from "react";
+import { useRecurrence } from "./RecurrenceContext";
+import { ChevronLeft, ChevronRight } from "lucide-react";
+import { isSameDay } from "./RecurrenceUtils";
 
 const MiniCalendar = () => {
   const { getRecurringDates } = useRecurrence();
   const [currentMonth, setCurrentMonth] = useState(new Date());
 
   // Safely memoize recurring dates using month + year as keys
-  const recurringDates = useMemo(() => getRecurringDates(), [
-    currentMonth.getMonth(),
-    currentMonth.getFullYear(),
-  ]);
+  const recurringDates = useMemo(
+    () => getRecurringDates(),
+    [currentMonth.getMonth(), currentMonth.getFullYear()]
+  );
 
-  const monthStart = new Date(currentMonth.getFullYear(), currentMonth.getMonth(), 1);
+  const monthStart = new Date(
+    currentMonth.getFullYear(),
+    currentMonth.getMonth(),
+    1
+  );
   // const monthEnd = new Date(currentMonth.getFullYear(), currentMonth.getMonth() + 1, 0);
   const startDate = new Date(monthStart);
   startDate.setDate(startDate.getDate() - monthStart.getDay());
@@ -48,9 +52,9 @@ const MiniCalendar = () => {
             <ChevronLeft size={20} />
           </button>
           <h3 className="text-lg font-semibold">
-            {currentMonth.toLocaleDateString('en-US', {
-              month: 'long',
-              year: 'numeric',
+            {currentMonth.toLocaleDateString("en-US", {
+              month: "long",
+              year: "numeric",
             })}
           </h3>
           <button
@@ -63,7 +67,7 @@ const MiniCalendar = () => {
 
         {/* Days of week header */}
         <div className="grid grid-cols-7 gap-1 mb-2">
-          {['S', 'M', 'T', 'W', 'T', 'F', 'S'].map((day, index) => (
+          {["S", "M", "T", "W", "T", "F", "S"].map((day, index) => (
             <div
               key={index}
               className="text-center text-sm font-medium text-gray-500 p-2"
@@ -84,10 +88,10 @@ const MiniCalendar = () => {
               <div
                 key={index}
                 className={`h-8 w-8 flex items-center justify-center text-sm rounded
-                  ${!isCurrentMonth ? 'text-gray-300' : 'text-gray-700'}
-                  ${isToday ? 'bg-blue-100 text-blue-700 font-semibold' : ''}
-                  ${isRecurring ? 'bg-green-100 text-green-700 font-medium border border-green-300' : ''}
-                  ${isRecurring && isToday ? 'bg-green-200 text-green-800' : ''}`}
+                  ${!isCurrentMonth ? "text-gray-300" : "text-gray-700"}
+                  ${isToday ? "bg-blue-100 text-blue-700 font-semibold" : ""}
+                  ${isRecurring ? "bg-green-100 text-green-700 font-medium border border-green-300" : ""}
+                  ${isRecurring && isToday ? "bg-green-200 text-green-800" : ""}`}
               >
                 {day.getDate()}
               </div>
